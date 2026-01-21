@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplos Flexbox y Grid</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h2 {
+            margin: 30px 0 15px;
+            color: #333;
+        }
+        
+        .contenedor {
+            border: 2px solid #3498db;
+            padding: 15px;
+            margin-bottom: 30px;
+            background-color: white;
+            border-radius: 8px;
+        }
+        
+        .item {
+            padding: 20px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 4px;
+            text-align: center;
+            margin: 5px;
+        }
+        
+        .item:nth-child(even) {
+            background-color: #2ecc71;
+        }
+        
+        .item:nth-child(3) {
+            background-color: #e74c3c;
+        }
+        
+        /* EJEMPLOS FLEXBOX */
+        .flex-contenedor {
+            display: flex;
+            min-height: 150px;
+        }
+        
+        /* 1. Dirección de los elementos */
+        .flex-row {
+            flex-direction: row; /* Valor por defecto */
+        }
+        
+        .flex-column {
+            flex-direction: column;
+            height: 300px;
+        }
+        
+        /* 2. Alineación en el eje principal */
+        .justify-start {
+            justify-content: flex-start;
+        }
+        
+        .justify-center {
+            justify-content: center;
+        }
+        
+        .justify-between {
+            justify-content: space-between;
+        }
+        
+        .justify-around {
+            justify-content: space-around;
+        }
+        
+        /* 3. Alineación en el eje transversal */
+        .align-center {
+            align-items: center;
+        }
+        
+        .align-stretch {
+            align-items: stretch;
+        }
+        
+        .align-flex-start {
+            align-items: flex-start;
+        }
+        
+        /* 4. Elementos flexibles */
+        .flex-grow .item {
+            flex-grow: 1;
+        }
+        
+        .flex-grow .item:nth-child(2) {
+            flex-grow: 2;
+        }
+        
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+        
+        .flex-wrap .item {
+            width: 150px;
+        }
+        
+        /* EJEMPLOS GRID */
+        .grid-contenedor {
+            display: grid;
+            min-height: 200px;
+            gap: 10px;
+        }
+        
+        /* 1. Grid básico con columnas */
+        .grid-columns {
+            grid-template-columns: 100px 200px auto;
+        }
+        
+        /* 2. Grid con filas y columnas */
+        .grid-filas-columnas {
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: 100px 150px;
+        }
+        
+        /* 3. Grid con áreas */
+        .grid-areas {
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: auto;
+            grid-template-areas: 
+                "header header header"
+                "sidebar main aside"
+                "footer footer footer";
+        }
+        
+        .header {
+            grid-area: header;
+            background-color: #9b59b6;
+        }
+        
+        .sidebar {
+            grid-area: sidebar;
+            background-color: #f39c12;
+        }
+        
+        .main {
+            grid-area: main;
+            background-color: #3498db;
+        }
+        
+        .aside {
+            grid-area: aside;
+            background-color: #1abc9c;
+        }
+        
+        .footer {
+            grid-area: footer;
+            background-color: #34495e;
+        }
+        
+        /* 4. Grid con alineación */
+        .grid-align {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 80px);
+            align-items: center;
+            justify-items: center;
+        }
+        
+        /* 5. Grid responsivo */
+        .grid-responsive {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+        
+        .grid-responsive .item {
+            height: 100px;
+        }
+        
+        /* Estilos para los ejemplos */
+        .ejemplo {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #3498db;
+        }
+        
+        .codigo {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flexbox y Grid CSS - Ejemplos Prácticos</h1>
+    
+    <div class="ejemplo">
+        <p><strong>Flexbox</strong> es ideal para componentes pequeños y alineaciones en una dimensión.</p>
+        <p><strong>Grid</strong> es perfecto para layouts complejos de dos dimensiones (filas y columnas).</p>
+    </div>
+    
+    <!-- FLEXBOX -->
+    <h2>📦 Flexbox - Ejemplos</h2>
+    
+    <h3>1. Dirección de los elementos</h3>
+    <div class="contenedor flex-contenedor flex-row">
+        <div class="item">Item 1</div>
+        <div class="item">Item 2</div>
+        <div class="item">Item 3</div>
+    </div>
+    <div class="codigo">display: flex; flex-direction: row;</div>
+    
+    <div class="contenedor flex-contenedor flex-column">
+        <div class="item">Item 1</div>
+        <div class="item">Item 2</div>
+        <div class="item">Item 3</div>
+    </div>
+    <div class="codigo">display: flex; flex-direction: column;</div>
+    
+    <h3>2. Alineación en el eje principal (justify-content)</h3>
+    <div class="contenedor flex-contenedor justify-center">
+        <div class="item">Item 1</div>
+        <div class="item">Item 2</div>
+        <div class="item">Item 3</div>
+    </div>
+    <div class="codigo">justify-content: center;</div>
+    
+    <div class="contenedor flex-contenedor justify-between">
+        <div class="item">Item 1</div>
+        <div class="item">Item 2</div>
+        <div class="item">Item 3</div>
+    </div>
+    <div class="codigo">justify-content: space-between;</div>
+    
+    <h3>3. Alineación en el eje transversal (align-items)</h3>
+    <div class="contenedor flex-contenedor align-center" style="height: 200px;">
+        <div class="item" style="height: 60px;">Item 1</div>
+        <div class="item" style="height: 100px;">Item 2</div>
+        <div class="item" style="height: 80px;">Item 3</div>
+    </div>
+    <div class="codigo">align-items: center;</div>
+    
+    <h3>4. Elementos flexibles (flex-grow)</h3>
+    <div class="contenedor flex-contenedor flex-grow">
+        <div class="item">flex-grow: 1</div>
+        <div class="item">flex-grow: 2</div>
+        <div class="item">flex-grow: 1</div>
+    </div>
+    <div class="codigo">.item { flex-grow: 1; } .item:nth-child(2) { flex-grow: 2; }</div>
+    
+    <h3>5. Ajuste de línea (flex-wrap)</h3>
+    <div class="contenedor flex-contenedor flex-wrap">
+        <div class="item">Item 1</div>
+        <div class="item">Item 2</div>
+        <div class="item">Item 3</div>
+        <div class="item">Item 4</div>
+        <div class="item">Item 5</div>
+        <div class="item">Item 6</div>
+    </div>
+    <div class="codigo">flex-wrap: wrap;</div>
+    
+    <!-- GRID -->
+    <h2>📐 Grid CSS - Ejemplos</h2>
+    
+    <h3>1. Grid con columnas definidas</h3>
+    <div class="contenedor grid-contenedor grid-columns">
+        <div class="item">Columna 1 (100px)</div>
+        <div class="item">Columna 2 (200px)</div>
+        <div class="item">Columna 3 (auto)</div>
+    </div>
+    <div class="codigo">grid-template-columns: 100px 200px auto;</div>
+    
+    <h3>2. Grid con filas y columnas usando fr (fracciones)</h3>
+    <div class="contenedor grid-contenedor grid-filas-columnas">
+        <div class="item">1fr</div>
+        <div class="item">2fr</div>
+        <div class="item">1fr</div>
+        <div class="item">Fila 2</div>
+        <div class="item">Fila 2</div>
+        <div class="item">Fila 2</div>
+    </div>
+    <div class="codigo">grid-template-columns: 1fr 2fr 1fr;<br>grid-template-rows: 100px 150px;</div>
+    
+    <h3>3. Grid con áreas con nombre (Layout típico)</h3>
+    <div class="contenedor grid-contenedor grid-areas">
+        <div class="item header">Header</div>
+        <div class="item sidebar">Sidebar</div>
+        <div class="item main">Contenido Principal</div>
+        <div class="item aside">Aside</div>
+        <div class="item footer">Footer</div>
+    </div>
+    <div class="codigo">grid-template-areas: <br>  "header header header"<br>  "sidebar main aside"<br>  "footer footer footer";</div>
+    
+    <h3>4. Alineación en Grid</h3>
+    <div class="contenedor grid-contenedor grid-align">
+        <div class="item">Centrado 1</div>
+        <div class="item">Centrado 2</div>
+        <div class="item">Centrado 3</div>
+        <div class="item">Centrado 4</div>
+        <div class="item">Centrado 5</div>
+        <div class="item">Centrado 6</div>
+    </div>
+    <div class="codigo">align-items: center;<br>justify-items: center;</div>
+    
+    <h3>5. Grid responsivo (auto-fit)</h3>
+    <div class="contenedor grid-contenedor grid-responsive">
+        <div class="item">Elemento 1</div>
+        <div class="item">Elemento 2</div>
+        <div class="item">Elemento 3</div>
+        <div class="item">Elemento 4</div>
+        <div class="item">Elemento 5</div>
+    </div>
+    <div class="codigo">grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));</div>
+    
+    <div class="ejemplo">
+        <h3>📝 Resumen de diferencias clave:</h3>
+        <p><strong>Flexbox:</strong></p>
+        <ul>
+            <li>Una dimensión (fila O columna)</li>
+            <li>Ideal para componentes: menús, barras, tarjetas</li>
+            <li>Control sobre alineación y distribución en una dirección</li>
+        </ul>
+        <p><strong>Grid:</strong></p>
+        <ul>
+            <li>Dos dimensiones (filas Y columnas simultáneamente)</li>
+            <li>Perfecto para layouts completos de página</li>
+            <li>Control preciso sobre ambas dimensiones</li>
+        </ul>
+        <p><strong>Consejo:</strong> ¡Puedes usar ambos! Un contenedor Grid puede tener hijos Flexbox y viceversa.</p>
+    </div>
+</body>
+</html>
